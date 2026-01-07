@@ -6,7 +6,14 @@ import Image from "next/image";
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.6, 
+      ease: [0.6, -0.05, 0.01, 0.99] as const
+    } 
+  }
 };
 
 const staggerContainer = {
@@ -19,7 +26,11 @@ const staggerContainer = {
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { duration: 0.5 } 
+  }
 };
 
 // Data
@@ -157,9 +168,8 @@ export default function Home() {
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0a0e1a]/80 border-b border-[#4dd0e1]/10"
       >
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-   
-            <div className="hidden md:flex items-center gap-8">
-              {["About", "Experience", "Projects", "Skills", "References", "Contact"].map((item) => (
+          <div className="hidden md:flex items-center gap-8">
+            {["About", "Experience", "Projects", "Skills", "References", "Contact"].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="nav-link text-sm">
                 {item}
               </a>
@@ -265,95 +275,14 @@ export default function Home() {
                 
                 {/* Profile image */}
                 <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-[#2d3a8c]/50 glow">
-        <Image
+                  <Image
                     src="/profile.jpg"
                     alt="Abdul Raheel"
                     fill
                     className="object-cover"
-          priority
-        />
+                    priority
+                  />
                 </div>
-
-                {/* Floating badges */}
-                {/* React - Top Right */}
-                {/* <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -right-4 top-8 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-2xl">⚛️</span>
-                  <span className="text-sm font-medium">React</span>
-                </motion.div> */}
-
-                {/* Node.js - Top Left */}
-                {/* <motion.div
-                  animate={{ y: [0, -8, 0], x: [0, 5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                  className="absolute -left-8 top-12 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-2xl">🟢</span>
-                  <span className="text-sm font-medium">Node.js</span>
-                </motion.div> */}
-
-                {/* Next.js - Right Middle */}
-                {/* <motion.div
-                  animate={{ x: [0, 8, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                  className="absolute -right-12 top-1/2 -translate-y-1/2 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-xl font-bold">▲</span>
-                  <span className="text-sm font-medium">Next.js</span>
-                </motion.div> */}
-
-                {/* Python - Left Middle */}
-                {/* <motion.div
-                  animate={{ x: [0, -6, 0], y: [0, 5, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-                  className="absolute -left-12 top-1/3 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-2xl">🐍</span>
-                  <span className="text-sm font-medium">Python</span>
-                </motion.div> */}
-
-                {/* AWS - Bottom Right */}
-                {/* <motion.div
-                  animate={{ y: [0, 8, 0], x: [0, -5, 0] }}
-                  transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-                  className="absolute -right-8 bottom-20 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-2xl">☁️</span>
-                  <span className="text-sm font-medium">AWS</span>
-                </motion.div> */}
-
-                {/* TypeScript - Bottom Left */}
-                {/* <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute -left-4 bottom-24 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-xl font-bold text-[#3178c6]">TS</span>
-                  <span className="text-sm font-medium">TypeScript</span>
-                </motion.div> */}
-
-                {/* Docker - Bottom Center Right */}
-                {/* <motion.div
-                  animate={{ y: [0, -6, 0], x: [0, 4, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                  className="absolute right-8 bottom-4 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-2xl">🐳</span>
-                  <span className="text-sm font-medium">Docker</span>
-                </motion.div> */}
-
-                {/* AI/ML - Top Center
-                <motion.div
-                  animate={{ y: [0, -12, 0] }}
-                  transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                  className="absolute left-1/2 -translate-x-1/2 -top-4 glass-card px-4 py-2 flex items-center gap-2 z-10"
-                >
-                  <span className="text-2xl">🤖</span>
-                  <span className="text-sm font-medium">AI/ML</span>
-                </motion.div> */}
               </div>
             </motion.div>
           </div>
@@ -445,14 +374,14 @@ export default function Home() {
           {/* Animated Tech Cards Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
             {[
-              { name: "React", icon: "⚛️", color: "from-[#61dafb] to-[#4dd0e1]" },
-              { name: "Node.js", icon: "🟢", color: "from-[#339933] to-[#4dd0e1]" },
-              { name: "Next.js", icon: "▲", color: "from-[#000000] to-[#4dd0e1]" },
-              { name: "Python", icon: "🐍", color: "from-[#3776ab] to-[#4dd0e1]" },
-              { name: "TypeScript", icon: "TS", color: "from-[#3178c6] to-[#4dd0e1]" },
-              { name: "AWS", icon: "☁️", color: "from-[#ff9900] to-[#4dd0e1]" },
-              { name: "Docker", icon: "🐳", color: "from-[#2496ed] to-[#4dd0e1]" },
-              { name: "AI/ML", icon: "🤖", color: "from-[#a78bfa] to-[#4dd0e1]" },
+              { name: "React", icon: "⚛️" },
+              { name: "Node.js", icon: "🟢" },
+              { name: "Next.js", icon: "▲" },
+              { name: "Python", icon: "🐍" },
+              { name: "TypeScript", icon: "TS" },
+              { name: "AWS", icon: "☁️" },
+              { name: "Docker", icon: "🐳" },
+              { name: "AI/ML", icon: "🤖" },
             ].map((tech, index) => (
               <motion.div
                 key={index}
@@ -475,11 +404,9 @@ export default function Home() {
                   }}
                   className="flex flex-col items-center gap-2"
                 >
-                  <div className={`text-3xl mb-1 ${tech.icon === "TS" ? "font-bold text-[#3178c6]" : ""}`}>
-                    {tech.icon === "TS" ? (
-                      <span className="text-2xl font-bold">TS</span>
-                    ) : tech.icon === "▲" ? (
-                      <span className="text-2xl font-bold">▲</span>
+                  <div className={`text-3xl mb-1 ${tech.icon === "TS" ? "font-bold text-[#3178c6]" : tech.icon === "▲" ? "font-bold" : ""}`}>
+                    {tech.icon === "TS" || tech.icon === "▲" ? (
+                      <span className="text-2xl font-bold">{tech.icon}</span>
                     ) : (
                       <span>{tech.icon}</span>
                     )}
@@ -606,8 +533,8 @@ export default function Home() {
               <motion.a
                 key={index}
                 href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
                 variants={scaleIn}
                 whileHover={{ scale: 1.03, y: -10 }}
                 className="group glass-card p-8 gradient-border block"
@@ -748,14 +675,14 @@ export default function Home() {
 
           {/* Review Screenshots Grid */}
           <div className="grid md:grid-cols-2 gap-6">
-            {["/review1.png", "/review4.png", "/review3.png", "/review2.png",].map((review, index) => (
+            {["/review1.png", "/review4.png", "/review3.png", "/review2.png"].map((review, index) => (
               <motion.div
                 key={index}
                 variants={scaleIn}
                 whileHover={{ scale: 1.02, y: -5 }}
                 className="glass-card p-4 gradient-border overflow-hidden"
-          >
-            <Image
+              >
+                <Image
                   src={review}
                   alt={`Client Review ${index + 1}`}
                   width={600}
@@ -781,7 +708,7 @@ export default function Home() {
             <span className="text-[#4dd0e1] text-sm font-medium uppercase tracking-widest mb-4 block">Get In Touch</span>
             <h2 className="section-heading text-4xl md:text-5xl gradient-text mb-6">Let&apos;s Work Together</h2>
             <p className="text-xl text-[#94a3b8] mb-12 max-w-2xl mx-auto">
-            Whether you have a project in mind or just want to connect, I&apos;d love to hear from you.
+              Whether you have a project in mind or just want to connect, I&apos;d love to hear from you.
             </p>
           </motion.div>
 
@@ -829,8 +756,8 @@ export default function Home() {
             {/* Upwork */}
             <motion.a
               href="https://www.upwork.com/freelancers/abdulraheel2"
-            target="_blank"
-            rel="noopener noreferrer"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.2, color: "#4dd0e1" }}
               className="text-[#64748b] transition-colors"
               title="Upwork"
